@@ -112,15 +112,15 @@
 - [X] Commit: "feat: sentence-transformers embedding service"
 
 ### Vector Store Service
-- [ ] Create `backend/services/vector_store.py`
+- [X] Create `backend/services/vector_store.py`
 - [ ] Write `store_chunks(session_id: str, chunks: list[dict]) -> None`:
   - Creates a ChromaDB collection named by session_id
   - Stores text + embedding + metadata (page_number, chunk_index)
-- [ ] Write `search_chunks(session_id: str, query_embedding: list[float], top_k=5) -> list[dict]`:
+- [X] Write `search_chunks(session_id: str, query_embedding: list[float], top_k=5) -> list[dict]`:
   - Returns top-K most similar chunks with their metadata and similarity score
-- [ ] Write `delete_session(session_id: str) -> None` (cleanup utility)
-- [ ] Local test: store 5 chunks, search with a question, verify relevant chunks return
-- [ ] Commit: "feat: ChromaDB vector store service"
+- [X] Write `delete_session(session_id: str) -> None` (cleanup utility)
+- [X] Local test: store 5 chunks, search with a question, verify relevant chunks return
+- [X] Commit: "feat: ChromaDB vector store service"
 
 ### Wire the Pipeline Together
 - [ ] Create `backend/services/ingest.py`
