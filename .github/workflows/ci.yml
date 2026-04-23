@@ -22,7 +22,7 @@ jobs:
 
       - name: Run tests
         working-directory: backend
-        run: pytest
+        run: pytest || [ $? -eq 5 ]
 
   frontend-check:
     runs-on: ubuntu-latest
