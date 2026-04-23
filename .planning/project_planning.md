@@ -33,11 +33,11 @@
   ├── .github/workflows/
   └── README.md  ← (already written)
   ```
-- [ ] Make first commit: "chore: initial project structure"
+- [X] Make first commit: "chore: initial project structure"
 
 ### Backend Skeleton
-- [ ] Create Python virtual environment inside `backend/`
-- [ ] Create `requirements.txt` with initial dependencies:
+- [X] Create Python virtual environment inside `backend/`
+- [X] Create `requirements.txt` with initial dependencies:
   ```
   fastapi
   uvicorn[standard]
@@ -45,32 +45,32 @@
   pydantic
   python-dotenv
   ```
-- [ ] Create `backend/main.py` with a single health check endpoint:
+- [X] Create `backend/main.py` with a single health check endpoint:
   ```python
   GET /health → {"status": "ok"}
   ```
-- [ ] Create `backend/.env.example` with all required keys (empty values)
-- [ ] Verify: `uvicorn main:app --reload` runs without errors
-- [ ] Commit: "feat: backend skeleton with health check"
+- [X] Create `backend/.env.example` with all required keys (empty values)
+- [X] Verify: `uvicorn main:app --reload` runs without errors
+- [X] Commit: "feat: backend skeleton with health check"
 
 ### Frontend Skeleton
-- [ ] Scaffold with Vite: `npm create vite@latest frontend -- --template react`
-- [ ] Delete boilerplate (App.css content, logo, counter component)
-- [ ] Create empty placeholder components:
+- [X] Scaffold with Vite: `npm create vite@latest frontend -- --template react`
+- [X] Delete boilerplate (App.css content, logo, counter component)
+- [X] Create empty placeholder components:
   - `src/components/UploadZone.jsx`
   - `src/components/ChatWindow.jsx`
   - `src/components/MessageBubble.jsx`
   - `src/components/CitationCard.jsx`
-- [ ] Create `src/api/client.js` (empty for now)
-- [ ] Verify: `npm run dev` runs without errors
-- [ ] Commit: "feat: frontend skeleton with placeholder components"
+- [X] Create `src/api/client.js` (empty for now)
+- [X] Verify: `npm run dev` runs without errors
+- [X] Commit: "feat: frontend skeleton with placeholder components"
 
 ### CI/CD Skeleton
-- [ ] Create `.github/workflows/ci.yml`:
+- [X] Create `.github/workflows/ci.yml`:
   - Trigger: push to `main`, all pull requests
   - Jobs: `backend-test` (pip install + pytest), `frontend-check` (npm install + build)
-- [ ] Push to GitHub — verify both CI jobs pass (they will, nothing to test yet)
-- [ ] Commit: "ci: add GitHub Actions pipeline"
+- [X] Push to GitHub — verify both CI jobs pass (they will, nothing to test yet)
+- [X] Commit: "ci: add GitHub Actions pipeline"
 
 ---
 
