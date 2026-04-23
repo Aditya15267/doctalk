@@ -4,19 +4,21 @@ import aiosqlite
 DB_PATH = os.getenv("SQLITE_DB_PATH")
 
 
-async def get_db() -> aiosqlite.Connection:
+def get_db() -> aiosqlite.Connection:
     """
-    Open and return an async SQLite connection.
+    Return an aiosqlite connection context manager for the database.
 
-    Reads the database path from the SQLITE_DB_PATH environment variable.
-    Row factory is set so that query results are returned as dicts instead of plain tuples.
+    This is a plain (non-async) function — it returns the connection object
+    without starting it. The caller must use it with `async with` so that
+    aiosqlite manages the thread lifecycle correctly:
+
+        async with get_db() as conn:
+            ...
 
     Returns:
-        An open aiosqlite connection. Caller is responsible for closing it.
+        An aiosqlite Connection ready to be used as an async context manager.
     """
-    conn = await aiosqlite.connect(DB_PATH)
-    conn.row_factory = aiosqlite.Row
-    return conn
+    return aiosqlite.connect(DB_PATH)
 
 
 async def init_db() -> None:

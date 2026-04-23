@@ -4,6 +4,7 @@ python-multipart
 pydantic
 python-dotenv
 pytest
+pytest-asyncio
 pdfplumber
 sentence-transformers
 chromadb
