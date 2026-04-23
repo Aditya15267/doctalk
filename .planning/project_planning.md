@@ -103,13 +103,13 @@
 - [X] Commit: "feat: PDF text extraction and chunking service"
 
 ### Embedding Service
-- [ ] Create `backend/services/embedder.py`
-- [ ] Write `get_embedder()` — loads `all-MiniLM-L6-v2` model once (singleton pattern)
-- [ ] Write `embed_chunks(chunks: list[dict]) -> list[dict]`:
+- [X] Create `backend/services/embedder.py`
+- [X] Write `get_embedder()` — loads `all-MiniLM-L6-v2` model once (singleton pattern)
+- [X] Write `embed_chunks(chunks: list[dict]) -> list[dict]`:
   - Adds `"embedding": list[float]` to each chunk dict
-- [ ] Write `embed_query(query: str) -> list[float]`
-- [ ] Local test: embed 3 chunks, print shape of embedding vector
-- [ ] Commit: "feat: sentence-transformers embedding service"
+- [X] Write `embed_query(query: str) -> list[float]`
+- [X] Local test: embed 3 chunks, print shape of embedding vector
+- [X] Commit: "feat: sentence-transformers embedding service"
 
 ### Vector Store Service
 - [ ] Create `backend/services/vector_store.py`
