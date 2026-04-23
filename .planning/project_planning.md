@@ -80,27 +80,27 @@
 > Estimated time: 4-5 days
 
 ### Dependencies
-- [ ] Add to `requirements.txt`:
+- [X] Add to `requirements.txt`:
   ```
   pdfplumber
   sentence-transformers
   chromadb
   ```
-- [ ] Run `pip install -r requirements.txt` and verify no errors
-- [ ] Commit: "chore: add PDF processing dependencies"
+- [X] Run `pip install -r requirements.txt` and verify no errors
+- [X] Commit: "chore: add PDF processing dependencies"
 
 ### PDF Extraction Service
-- [ ] Create `backend/services/pdf_processor.py`
-- [ ] Write `extract_text(file_bytes: bytes) -> str`:
+- [X] Create `backend/services/pdf_processor.py`
+- [X] Write `extract_text(file_bytes: bytes) -> str`:
   - Uses `pdfplumber` to extract raw text from PDF bytes
   - Returns cleaned plain text string
-- [ ] Write `chunk_text(text: str, chunk_size=500, overlap=50) -> list[dict]`:
+- [X] Write `chunk_text(text: str, chunk_size=500, overlap=50) -> list[dict]`:
   - Splits text into overlapping chunks
   - Each chunk: `{"text": str, "chunk_index": int, "page_number": int}`
-- [ ] Write a quick local test (not pytest yet — just `if __name__ == "__main__"`):
+- [X] Write a quick local test (not pytest yet — just `if __name__ == "__main__"`):
   - Point it at any real PDF on your machine
   - Print first 3 chunks to verify output looks right
-- [ ] Commit: "feat: PDF text extraction and chunking service"
+- [X] Commit: "feat: PDF text extraction and chunking service"
 
 ### Embedding Service
 - [ ] Create `backend/services/embedder.py`
