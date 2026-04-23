@@ -80,59 +80,59 @@
 > Estimated time: 4-5 days
 
 ### Dependencies
-- [ ] Add to `requirements.txt`:
+- [X] Add to `requirements.txt`:
   ```
   pdfplumber
   sentence-transformers
   chromadb
   ```
-- [ ] Run `pip install -r requirements.txt` and verify no errors
-- [ ] Commit: "chore: add PDF processing dependencies"
+- [X] Run `pip install -r requirements.txt` and verify no errors
+- [X] Commit: "chore: add PDF processing dependencies"
 
 ### PDF Extraction Service
-- [ ] Create `backend/services/pdf_processor.py`
-- [ ] Write `extract_text(file_bytes: bytes) -> str`:
+- [X] Create `backend/services/pdf_processor.py`
+- [X] Write `extract_text(file_bytes: bytes) -> str`:
   - Uses `pdfplumber` to extract raw text from PDF bytes
   - Returns cleaned plain text string
-- [ ] Write `chunk_text(text: str, chunk_size=500, overlap=50) -> list[dict]`:
+- [X] Write `chunk_text(text: str, chunk_size=500, overlap=50) -> list[dict]`:
   - Splits text into overlapping chunks
   - Each chunk: `{"text": str, "chunk_index": int, "page_number": int}`
-- [ ] Write a quick local test (not pytest yet — just `if __name__ == "__main__"`):
+- [X] Write a quick local test (not pytest yet — just `if __name__ == "__main__"`):
   - Point it at any real PDF on your machine
   - Print first 3 chunks to verify output looks right
-- [ ] Commit: "feat: PDF text extraction and chunking service"
+- [X] Commit: "feat: PDF text extraction and chunking service"
 
 ### Embedding Service
-- [ ] Create `backend/services/embedder.py`
-- [ ] Write `get_embedder()` — loads `all-MiniLM-L6-v2` model once (singleton pattern)
-- [ ] Write `embed_chunks(chunks: list[dict]) -> list[dict]`:
+- [X] Create `backend/services/embedder.py`
+- [X] Write `get_embedder()` — loads `all-MiniLM-L6-v2` model once (singleton pattern)
+- [X] Write `embed_chunks(chunks: list[dict]) -> list[dict]`:
   - Adds `"embedding": list[float]` to each chunk dict
-- [ ] Write `embed_query(query: str) -> list[float]`
-- [ ] Local test: embed 3 chunks, print shape of embedding vector
-- [ ] Commit: "feat: sentence-transformers embedding service"
+- [X] Write `embed_query(query: str) -> list[float]`
+- [X] Local test: embed 3 chunks, print shape of embedding vector
+- [X] Commit: "feat: sentence-transformers embedding service"
 
 ### Vector Store Service
-- [ ] Create `backend/services/vector_store.py`
+- [X] Create `backend/services/vector_store.py`
 - [ ] Write `store_chunks(session_id: str, chunks: list[dict]) -> None`:
   - Creates a ChromaDB collection named by session_id
   - Stores text + embedding + metadata (page_number, chunk_index)
-- [ ] Write `search_chunks(session_id: str, query_embedding: list[float], top_k=5) -> list[dict]`:
+- [X] Write `search_chunks(session_id: str, query_embedding: list[float], top_k=5) -> list[dict]`:
   - Returns top-K most similar chunks with their metadata and similarity score
-- [ ] Write `delete_session(session_id: str) -> None` (cleanup utility)
-- [ ] Local test: store 5 chunks, search with a question, verify relevant chunks return
-- [ ] Commit: "feat: ChromaDB vector store service"
+- [X] Write `delete_session(session_id: str) -> None` (cleanup utility)
+- [X] Local test: store 5 chunks, search with a question, verify relevant chunks return
+- [X] Commit: "feat: ChromaDB vector store service"
 
 ### Wire the Pipeline Together
-- [ ] Create `backend/services/ingest.py`
-- [ ] Write `ingest_pdf(session_id: str, file_bytes: bytes) -> dict`:
+- [X] Create `backend/services/ingest.py`
+- [X] Write `ingest_pdf(session_id: str, file_bytes: bytes) -> dict`:
   - Calls extract → chunk → embed → store in sequence
   - Returns `{"chunks": int, "pages": int}`
-- [ ] Local test: run ingest on a real PDF end-to-end, verify ChromaDB is populated
-- [ ] Write first real pytest test in `backend/tests/test_ingest.py`:
+- [X] Local test: run ingest on a real PDF end-to-end, verify ChromaDB is populated
+- [X] Write first real pytest test in `backend/tests/test_ingest.py`:
   - Test with a small sample PDF
   - Assert chunk count > 0
   - Assert ChromaDB collection exists for session_id
-- [ ] Commit: "feat: end-to-end PDF ingest pipeline + tests"
+- [X] Commit: "feat: end-to-end PDF ingest pipeline + tests"
 
 ---
 
