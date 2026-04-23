@@ -123,16 +123,16 @@
 - [X] Commit: "feat: ChromaDB vector store service"
 
 ### Wire the Pipeline Together
-- [ ] Create `backend/services/ingest.py`
-- [ ] Write `ingest_pdf(session_id: str, file_bytes: bytes) -> dict`:
+- [X] Create `backend/services/ingest.py`
+- [X] Write `ingest_pdf(session_id: str, file_bytes: bytes) -> dict`:
   - Calls extract → chunk → embed → store in sequence
   - Returns `{"chunks": int, "pages": int}`
-- [ ] Local test: run ingest on a real PDF end-to-end, verify ChromaDB is populated
-- [ ] Write first real pytest test in `backend/tests/test_ingest.py`:
+- [X] Local test: run ingest on a real PDF end-to-end, verify ChromaDB is populated
+- [X] Write first real pytest test in `backend/tests/test_ingest.py`:
   - Test with a small sample PDF
   - Assert chunk count > 0
   - Assert ChromaDB collection exists for session_id
-- [ ] Commit: "feat: end-to-end PDF ingest pipeline + tests"
+- [X] Commit: "feat: end-to-end PDF ingest pipeline + tests"
 
 ---
 
