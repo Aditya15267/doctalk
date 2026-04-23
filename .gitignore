@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+*.env
+.env.local
+
+# Python testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Python type checking
+.mypy_cache/
+
+# Node
+node_modules/
+dist/
+.cache/
+
+# Vite build output
+frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project-specific
+chroma_data/
+doctalk.db
