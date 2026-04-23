@@ -7,3 +7,4 @@ pytest
 pdfplumber
 sentence-transformers
 chromadb
+aiosqlite
