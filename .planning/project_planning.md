@@ -141,36 +141,36 @@
 > Estimated time: 2 days
 
 ### Dependencies
-- [ ] Add to `requirements.txt`:
+- [X] Add to `requirements.txt`:
   ```
   aiosqlite
   ```
-- [ ] Commit: "chore: add aiosqlite dependency"
+- [X] Commit: "chore: add aiosqlite dependency"
 
 ### Database Setup
 - [ ] Create `backend/db/database.py`:
   - Async SQLite connection using `aiosqlite`
   - `init_db()` function — creates all tables on startup if they don't exist
-- [ ] Create all 3 tables from the data model:
+- [X] Create all 3 tables from the data model:
   ```sql
   sessions (session_id, filename, pages, chunk_count, created_at, status)
   messages (message_id, session_id, role, content, created_at)
   citations (citation_id, message_id, chunk_text, page_number, chunk_index, score)
   ```
-- [ ] Commit: "feat: SQLite schema with sessions, messages, citations"
+- [X] Commit: "feat: SQLite schema with sessions, messages, citations"
 
 ### Database Operations
-- [ ] Create `backend/db/session_store.py`:
+- [X] Create `backend/db/session_store.py`:
   - `create_session(session_id, filename, pages, chunk_count)`
   - `get_session(session_id) -> dict | None`
-- [ ] Create `backend/db/message_store.py`:
+- [X] Create `backend/db/message_store.py`:
   - `save_message(session_id, role, content) -> message_id`
   - `save_citations(message_id, citations: list[dict])`
   - `get_history(session_id) -> list[dict]`
-- [ ] Write pytest tests in `backend/tests/test_db.py`:
+- [X] Write pytest tests in `backend/tests/test_db.py`:
   - Create session → get session → assert fields match
   - Save message + citations → get history → assert returned
-- [ ] Commit: "feat: database CRUD operations + tests"
+- [X] Commit: "feat: database CRUD operations + tests"
 
 ---
 
