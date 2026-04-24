@@ -38,19 +38,21 @@ async def upload_pdf(file: UploadFile):
     if len(file_bytes) > MAX_UPLOAD_BYTES:
         raise HTTPException(
             status_code=400,
-            detail=f"File exceeds the {os.getenv('MAX_UPLOAD_SIZE_MB')}MB limit.",
+            detail=f"File exceeds the {os.getenv('MAX_UPLOAD_SIZE_MB', '10')}MB limit.",
         )
 
     session_id = str(uuid4())
 
-    result = ingest_pdf(session_id, file_bytes)
-
-    await create_session(
-        session_id=session_id,
-        filename=file.filename,
-        pages=result["pages"],
-        chunk_count=result["chunks"],
-    )
+    try:
+        result = ingest_pdf(session_id, file_bytes)
+        await create_session(
+            session_id=session_id,
+            filename=file.filename,
+            pages=result["pages"],
+            chunk_count=result["chunks"],
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to process PDF: {str(e)}")
 
     return UploadResponse(
         session_id=session_id,

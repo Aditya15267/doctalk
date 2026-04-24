@@ -1,0 +1,43 @@
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 280px;
+  background: #141414;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.toggle:hover {
+  color: #ccc;
+}
+
+.arrow {
+  font-size: 10px;
+}
+
+.text {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.5;
+  border-top: 1px solid #2a2a2a;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

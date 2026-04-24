@@ -1,0 +1,33 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 16px;
+  padding: 24px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  color: #eee;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+.loading {
+  color: #555;
+  font-size: 15px;
+}
