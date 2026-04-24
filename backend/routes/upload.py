@@ -9,7 +9,7 @@ from services.ingest import ingest_pdf
 
 router = APIRouter()
 
-MAX_UPLOAD_BYTES = int(os.getenv("MAX_UPLOAD_SIZE_MB")) * 1024 * 1024
+MAX_UPLOAD_BYTES = int(os.getenv("MAX_UPLOAD_SIZE_MB", "10")) * 1024 * 1024
 
 
 @router.post("/upload", response_model=UploadResponse)
