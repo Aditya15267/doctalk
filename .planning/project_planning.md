@@ -179,7 +179,7 @@
 > Estimated time: 3 days
 
 ### Pydantic Models
-- [ ] Create `backend/models/schemas.py`:
+- [X] Create `backend/models/schemas.py`:
   ```python
   class UploadResponse(BaseModel)
   class ChatRequest(BaseModel)
@@ -187,40 +187,40 @@
   class MessageSchema(BaseModel)
   class HistoryResponse(BaseModel)
   ```
-- [ ] Commit: "feat: Pydantic request/response schemas"
+- [X] Commit: "feat: Pydantic request/response schemas"
 
 ### Upload Endpoint
-- [ ] Create `backend/routes/upload.py`
-- [ ] Implement `POST /upload`:
+- [X] Create `backend/routes/upload.py`
+- [X] Implement `POST /upload`:
   - Accept `UploadFile` from FastAPI
   - Validate: must be PDF, under 10MB
   - Generate `session_id` (uuid4)
   - Call `ingest_pdf(session_id, file.read())`
   - Save session to SQLite
   - Return `UploadResponse`
-- [ ] Register router in `main.py`
-- [ ] Test with curl:
+- [X] Register router in `main.py`
+- [X] Test with curl:
   ```bash
   curl -X POST http://localhost:8000/upload \
     -F "file=@yourdoc.pdf"
   ```
-- [ ] Commit: "feat: POST /upload endpoint"
+- [X] Commit: "feat: POST /upload endpoint"
 
 ### LLM Service
-- [ ] Add to `requirements.txt`: `anthropic`
-- [ ] Create `backend/services/llm.py`
-- [ ] Write `build_prompt(question: str, chunks: list[dict]) -> str`:
+- [X] Add to `requirements.txt`: `anthropic`
+- [X] Create `backend/services/llm.py`
+- [X] Write `build_prompt(question: str, chunks: list[dict]) -> str`:
   - System message: "Answer only from the provided context. If the answer is not in the context, say so."
   - Includes all retrieved chunk texts as numbered context blocks
-- [ ] Write `stream_answer(question: str, chunks: list[dict]) -> AsyncGenerator`:
+- [X] Write `stream_answer(question: str, chunks: list[dict]) -> AsyncGenerator`:
   - Calls Anthropic API with `stream=True`
   - Yields tokens one by one
-- [ ] Test locally: call with a sample question and chunks, verify streaming output
-- [ ] Commit: "feat: LLM service with prompt builder and streaming"
+- [X] Test locally: call with a sample question and chunks, verify streaming output
+- [X] Commit: "feat: LLM service with prompt builder and streaming"
 
 ### Chat Endpoint
-- [ ] Create `backend/routes/chat.py`
-- [ ] Implement `POST /chat` with SSE streaming:
+- [X] Create `backend/routes/chat.py`
+- [X] Implement `POST /chat` with SSE streaming:
   - Validate session exists in SQLite
   - Embed the question
   - Search ChromaDB for top-5 chunks
@@ -228,22 +228,22 @@
   - Stream LLM response token by token
   - On stream complete: save assistant message + citations to SQLite
   - SSE event format: `data: {"type": "token", "value": "..."}` and `data: {"type": "done", "citations": [...]}`
-- [ ] Test with curl:
+- [X] Test with curl:
   ```bash
   curl -X POST http://localhost:8000/chat \
     -H "Content-Type: application/json" \
     -d '{"session_id": "your-id", "question": "What is this document about?"}'
   ```
-- [ ] Commit: "feat: POST /chat endpoint with SSE streaming"
+- [X] Commit: "feat: POST /chat endpoint with SSE streaming"
 
 ### History Endpoint
-- [ ] Create `backend/routes/history.py`
-- [ ] Implement `GET /history/{session_id}`:
+- [X] Create `backend/routes/history.py`
+- [X] Implement `GET /history/{session_id}`:
   - Fetch session + all messages + citations from SQLite
   - Return `HistoryResponse`
   - Return 404 if session not found
-- [ ] Test with curl
-- [ ] Commit: "feat: GET /history/{session_id} endpoint"
+- [X] Test with curl
+- [X] Commit: "feat: GET /history/{session_id} endpoint"
 
 ### API Tests
 - [ ] Write `backend/tests/test_api.py` using FastAPI `TestClient`:
