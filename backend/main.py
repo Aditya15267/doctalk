@@ -4,6 +4,7 @@ load_dotenv()
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from db.database import init_db
+from routes.upload import router as upload_router
 
 
 @asynccontextmanager
@@ -13,6 +14,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.include_router(upload_router)
 
 
 @app.get("/health")
