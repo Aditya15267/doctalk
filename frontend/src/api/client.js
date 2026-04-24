@@ -69,6 +69,8 @@ export async function streamChat(session_id, question, onToken, onDone, onError)
           onToken(event.value)
         } else if (event.type === "done") {
           onDone(event.citations)
+        } else if (event.type === "error") {
+          onError(new Error(event.message))
         }
       }
     }

@@ -83,6 +83,12 @@ export default function UploadZone({ onUploadComplete }) {
 
       {error && <p className={styles.error}>{error}</p>}
 
+      {loading && (
+        <p className={styles.processing}>
+          Processing your document — this may take a moment...
+        </p>
+      )}
+
       <button
         className={styles.uploadBtn}
         onClick={handleUpload}

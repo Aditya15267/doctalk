@@ -42,24 +42,28 @@ async def chat(request: ChatRequest):
     async def event_generator():
         full_response = []
 
-        async for token in stream_answer(request.question, chunks):
-            full_response.append(token)
-            yield f"data: {json.dumps({'type': 'token', 'value': token})}\n\n"
+        try:
+            async for token in stream_answer(request.question, chunks):
+                full_response.append(token)
+                yield f"data: {json.dumps({'type': 'token', 'value': token})}\n\n"
 
-        assistant_message_id = await save_message(
-            request.session_id, "assistant", "".join(full_response)
-        )
-        await save_citations(assistant_message_id, chunks)
+            assistant_message_id = await save_message(
+                request.session_id, "assistant", "".join(full_response)
+            )
+            await save_citations(assistant_message_id, chunks)
 
-        citations_payload = [
-            {
-                "chunk_text": c["text"],
-                "page_number": c["page_number"],
-                "chunk_index": c["chunk_index"],
-                "score": c["score"],
-            }
-            for c in chunks
-        ]
-        yield f"data: {json.dumps({'type': 'done', 'citations': citations_payload})}\n\n"
+            citations_payload = [
+                {
+                    "chunk_text": c["text"],
+                    "page_number": c["page_number"],
+                    "chunk_index": c["chunk_index"],
+                    "score": c["score"],
+                }
+                for c in chunks
+            ]
+            yield f"data: {json.dumps({'type': 'done', 'citations': citations_payload})}\n\n"
+
+        except Exception as e:
+            yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
