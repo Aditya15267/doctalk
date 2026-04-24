@@ -10,3 +10,4 @@ sentence-transformers
 chromadb
 aiosqlite
 anthropic
+httpx
