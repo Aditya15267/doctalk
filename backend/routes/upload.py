@@ -38,7 +38,7 @@ async def upload_pdf(file: UploadFile):
     if len(file_bytes) > MAX_UPLOAD_BYTES:
         raise HTTPException(
             status_code=400,
-            detail=f"File exceeds the {os.getenv('MAX_UPLOAD_SIZE_MB')}MB limit.",
+            detail=f"File exceeds the {os.getenv('MAX_UPLOAD_SIZE_MB', '10')}MB limit.",
         )
 
     session_id = str(uuid4())
