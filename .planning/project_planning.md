@@ -246,13 +246,13 @@
 - [X] Commit: "feat: GET /history/{session_id} endpoint"
 
 ### API Tests
-- [ ] Write `backend/tests/test_api.py` using FastAPI `TestClient`:
+- [X] Write `backend/tests/test_api.py` using FastAPI `TestClient`:
   - Test upload with a valid PDF → assert 200 + session_id
   - Test upload with invalid file type → assert 400
   - Test upload with oversized file → assert 400
   - Test history with unknown session_id → assert 404
-- [ ] Verify all tests pass in CI
-- [ ] Commit: "test: API endpoint integration tests"
+- [X] Verify all tests pass in CI
+- [X] Commit: "test: API endpoint integration tests"
 
 ---
 
@@ -261,64 +261,64 @@
 > Estimated time: 4-5 days
 
 ### API Client
-- [ ] Implement `src/api/client.js`:
+- [X] Implement `src/api/client.js`:
   - `uploadPDF(file) -> Promise<{session_id, filename, pages, chunks}>`
   - `streamChat(session_id, question, onToken, onDone, onError)` — handles SSE
   - `getHistory(session_id) -> Promise<{messages}>`
-- [ ] Commit: "feat: API client with upload, chat, and history calls"
+- [X] Commit: "feat: API client with upload, chat, and history calls"
 
 ### Upload Zone Component
-- [ ] Implement `UploadZone.jsx`:
+- [X] Implement `UploadZone.jsx`:
   - Drag-and-drop area + click to browse
   - Shows file name and size on selection
   - Upload button triggers `uploadPDF()`
   - Shows spinner during upload
   - Shows error message on failure
   - On success: calls `onUploadComplete(session_id)`
-- [ ] Basic CSS: centered card, dashed border on drag, hover state
-- [ ] Test: upload a real PDF, verify session_id returned and stored in localStorage
-- [ ] Commit: "feat: UploadZone component with drag-and-drop"
+- [X] Basic CSS: centered card, dashed border on drag, hover state
+- [X] Test: upload a real PDF, verify session_id returned and stored in localStorage
+- [X] Commit: "feat: UploadZone component with drag-and-drop"
 
 ### Chat Window Component
-- [ ] Implement `ChatWindow.jsx`:
+- [X] Implement `ChatWindow.jsx`:
   - Renders list of `MessageBubble` components
   - Text input + send button at the bottom
   - Calls `streamChat()` on submit
   - Appends tokens to the assistant message as they stream in
   - Auto-scrolls to bottom on new message
   - Disables input while streaming
-- [ ] Commit: "feat: ChatWindow component with SSE streaming"
+- [X] Commit: "feat: ChatWindow component with SSE streaming"
 
 ### Message Bubble Component
-- [ ] Implement `MessageBubble.jsx`:
+- [X] Implement `MessageBubble.jsx`:
   - User messages: aligned right, different background
   - Assistant messages: aligned left
   - Shows a blinking cursor while streaming
   - Renders `CitationCard` components below assistant messages
-- [ ] Commit: "feat: MessageBubble component"
+- [X] Commit: "feat: MessageBubble component"
 
 ### Citation Card Component
-- [ ] Implement `CitationCard.jsx`:
+- [X] Implement `CitationCard.jsx`:
   - Collapsed by default — shows "Source: Page X"
   - Expands on click to show the raw chunk text
   - Visually distinct from the message bubble (smaller font, muted color)
-- [ ] Commit: "feat: CitationCard with expand/collapse"
+- [X] Commit: "feat: CitationCard with expand/collapse"
 
 ### Session Persistence (localStorage)
-- [ ] On successful upload: save `session_id` and `filename` to localStorage
-- [ ] On app load: check localStorage for existing session_id
-- [ ] If found: call `GET /history/{session_id}` and restore the conversation
-- [ ] If not found: show the upload screen
-- [ ] Add a "New document" button that clears localStorage and resets state
-- [ ] Commit: "feat: session persistence with localStorage and history restore"
+- [X] On successful upload: save `session_id` and `filename` to localStorage
+- [X] On app load: check localStorage for existing session_id
+- [X] If found: call `GET /history/{session_id}` and restore the conversation
+- [X] If not found: show the upload screen
+- [X] Add a "New document" button that clears localStorage and resets state
+- [X] Commit: "feat: session persistence with localStorage and history restore"
 
 ### App Layout & Wiring
-- [ ] Implement `App.jsx`:
+- [X] Implement `App.jsx`:
   - State: `session` (null or `{session_id, filename}`)
   - If no session: render `<UploadZone />`
   - If session: render `<ChatWindow />` with document name in header
-- [ ] Add minimal global CSS: font, colors, max-width container, mobile-friendly
-- [ ] Commit: "feat: App layout and component wiring"
+- [X] Add minimal global CSS: font, colors, max-width container, mobile-friendly
+- [X] Commit: "feat: App layout and component wiring"
 
 ---
 
