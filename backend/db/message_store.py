@@ -40,18 +40,19 @@ async def save_citations(message_id: int, citations: list[dict]) -> None:
     Args:
         message_id: The ID of the assistant message these citations belong to.
         citations: List of dicts from search_chunks(), each containing
-                   "text", "page_number", "chunk_index", and "score".
+                   "text", "page_number", "chunk_index", "document_id", and "score".
     """
     async with get_db() as conn:
         conn.row_factory = aiosqlite.Row
         await conn.executemany(
             """
-            INSERT INTO citations (message_id, chunk_text, page_number, chunk_index, score)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO citations (message_id, document_id, chunk_text, page_number, chunk_index, score)
+            VALUES (?, ?, ?, ?, ?, ?)
             """,
             [
                 (
                     message_id,
+                    citation["document_id"],
                     citation["text"],
                     citation["page_number"],
                     citation["chunk_index"],
@@ -98,7 +99,7 @@ async def get_history(session_id: str) -> list[dict]:
             if message["role"] == "assistant":
                 async with conn.execute(
                     """
-                    SELECT chunk_text, page_number, chunk_index, score
+                    SELECT document_id, chunk_text, page_number, chunk_index, score
                     FROM citations
                     WHERE message_id = ?
                     """,

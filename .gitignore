@@ -45,3 +45,5 @@ Thumbs.db
 # Project-specific
 chroma_data/
 doctalk.db
+backend/pdf_storage/*
+!backend/pdf_storage/.gitkeep

@@ -40,6 +40,16 @@ async def init_db() -> None:
                 status      TEXT NOT NULL DEFAULT 'ready'
             );
 
+            CREATE TABLE IF NOT EXISTS documents (
+                document_id TEXT PRIMARY KEY,
+                session_id  TEXT NOT NULL,
+                filename    TEXT NOT NULL,
+                pages       INTEGER NOT NULL,
+                chunk_count INTEGER NOT NULL,
+                created_at  TEXT NOT NULL DEFAULT (datetime('now')),
+                FOREIGN KEY (session_id) REFERENCES sessions (session_id)
+            );
+
             CREATE TABLE IF NOT EXISTS messages (
                 message_id  INTEGER PRIMARY KEY AUTOINCREMENT,
                 session_id  TEXT NOT NULL,
@@ -52,6 +62,7 @@ async def init_db() -> None:
             CREATE TABLE IF NOT EXISTS citations (
                 citation_id  INTEGER PRIMARY KEY AUTOINCREMENT,
                 message_id   INTEGER NOT NULL,
+                document_id  TEXT NOT NULL,
                 chunk_text   TEXT NOT NULL,
                 page_number  INTEGER NOT NULL,
                 chunk_index  INTEGER NOT NULL,

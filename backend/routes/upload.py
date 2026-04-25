@@ -3,6 +3,7 @@ from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException, UploadFile
 
+from db.document_store import create_document
 from db.session_store import create_session
 from models.schemas import UploadResponse
 from services.ingest import ingest_pdf
@@ -42,11 +43,19 @@ async def upload_pdf(file: UploadFile):
         )
 
     session_id = str(uuid4())
+    document_id = str(uuid4())
 
     try:
-        result = ingest_pdf(session_id, file_bytes)
+        result = ingest_pdf(session_id, document_id, file_bytes)
         await create_session(
             session_id=session_id,
+            filename=file.filename,
+            pages=result["pages"],
+            chunk_count=result["chunks"],
+        )
+        await create_document(
+            session_id=session_id,
+            document_id=document_id,
             filename=file.filename,
             pages=result["pages"],
             chunk_count=result["chunks"],
