@@ -6,6 +6,9 @@ python-dotenv
 pytest
 pytest-asyncio
 pdfplumber
+pytesseract
+pdf2image
+Pillow
 sentence-transformers
 chromadb
 aiosqlite
